@@ -1,5 +1,9 @@
+pub mod error;
+
 use std::collections::HashMap;
 use std::str::FromStr;
+
+use error::ParseError;
 
 #[derive(Debug)]
 pub struct Config<Value: FromStr> {
@@ -11,6 +15,19 @@ impl<Value: FromStr> Config<Value> {
         Config {
             data: HashMap::new(),
         }
+    }
+}
+
+impl<Value: FromStr> FromStr for Config<Value> {
+    type Err = ParseError;
+    fn from_str(data: &str) -> Result<Self, Self::Err> { 
+        let data = data.trim();
+        loop {
+            if let Some(ch) = data.chars().next() {
+                
+            }
+        }
+        Ok(Config::new())
     }
 }
 
